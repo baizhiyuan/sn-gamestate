@@ -32,47 +32,62 @@ pipeline:
   - track
   - pitch
   - calibration
-  - jersey_number_detect
-  - tracklet_agg
-  - team
-  - team_side
+  # - jersey_number_detect
+  # - tracklet_agg
+  # - team
+  # - team_side
 
 
 # Experiment name
-experiment_name: "sn-gamestate"
+experiment_name: "soccer-position"
 
 # Path definitions
 home_dir: "${oc.env:HOME}"
-data_dir: "${project_dir}/data"
+# data_dir: "/garage#2/projects/data"
+data_dir: "/garage#2/projects/data/video_bzy"
 model_dir: "${project_dir}/pretrained_models"
 
 # Machine configuration
-num_cores: 4
+num_cores: 20
 use_wandb: False
 use_rich: True
 
 modules: # Allows module-specific batch_size and other configuration
-  bbox_detector: {batch_size: 8}
-  pose_bottomup: {batch_size: 8}
-  reid: {batch_size: 64}
-  track: {batch_size: 64}
-  pitch: {batch_size: 1}
-  calibration: {batch_size: 1}
+  bbox_detector: {batch_size: 16}
+  pose_bottomup: {batch_size: 16}
+  reid: {batch_size: 64}  # 64
+  track: {batch_size: 64} # 64
+  pitch: {batch_size: 16} #2
+  calibration: {batch_size: 64} #4
   jersey_number_detect: {batch_size: 8}
 
 # Flags
 test_tracking: True
-eval_tracking: True
-print_config: False
+eval_tracking: False
+print_config: True
+
 
 # Dataset
 dataset:
-  nvid: 1  # For a quick first inference, only the first video is processed. Use "-1" to process all the videos.
+  nvid: -1  # For a quick first inference, only the first video is processed. Use "-1" to process all the videos.
 #  nframes: -1 # For testing on only a few frames, set to a positive number. Will disable evaluation !
-  eval_set: "valid"  # Tracking is performed on the SoccerNet validation set. Choose from {"train", "valid", "test", "challenge"}.
-  dataset_path: ${data_dir}/SoccerNetGS  # The SoccerNet game state dataset is located under the data path (defined above) in the 'SoccerNetGS' folder
+  #eval_set: {"spain_laliga", "italy_serie-a", "germany_bundesliga", "france_ligue-1", "europe_uefa-champions-league", "england_epl"} #{"spain_laliga", "italy_serie-a", "germany_bundesliga", "france_ligue-1", "europe_uefa-champions-league", "england_epl"} # "valid"  # Tracking is performed on the SoccerNet validation set. Choose from {"train", "valid", "test", "challenge"}.
+  eval_set:
+  - spain_laliga
+  - italy_serie-a
+  - germany_bundesliga
+  - france_ligue-1
+  - europe_uefa-champions-league
+  - england_epl
+  dataset_path: ${data_dir}  # ${data_dir}/SoccerNetGS The SoccerNet game state dataset is located under the data path (defined above) in the 'SoccerNetGS' folder
   vids_dict: # Use one key per split (valid, test, etc)
-    valid: []  # Specify explicitly which video to apply tracking on, e.g. ['SNGS-04', 'SNGS-51'] . Ignored when left empty.
+    spain_laliga: []
+    italy_serie-a: []
+    germany_bundesliga: []
+    france_ligue-1: []
+    europe_uefa-champions-league: []
+    england_epl: []
+    #valid: []  # Specify explicitly which video to apply tracking on, e.g. ['SNGS-04', 'SNGS-51'] . Ignored when left empty.
 
 # Tracker state (save computation time by dumping tracking results on disk for later re-use)
 state:
@@ -92,6 +107,7 @@ hydra:
   job:
     chdir: True
   run:
-    dir: "outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+    # dir: "outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+    dir: "/garage/projects/video-LLM/position_dataset_bzy/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
   sweep:
     dir: "multirun_outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"

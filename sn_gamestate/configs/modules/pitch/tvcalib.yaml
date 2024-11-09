@@ -1,5 +1,5 @@
 _target_: sn_gamestate.calibration.tvcalib.TVCalib_Segmentation
 checkpoint: ${model_dir}/calibration/train_59.pt
-image_width: 1920
-image_height: 1080
-batch_size: 2
+image_width: 398
+image_height: 224
+batch_size: 64
