@@ -73,19 +73,19 @@ dataset:
 #  nframes: -1 # For testing on only a few frames, set to a positive number. Will disable evaluation !
   #eval_set: {"spain_laliga", "italy_serie-a", "germany_bundesliga", "france_ligue-1", "europe_uefa-champions-league", "england_epl"} #{"spain_laliga", "italy_serie-a", "germany_bundesliga", "france_ligue-1", "europe_uefa-champions-league", "england_epl"} # "valid"  # Tracking is performed on the SoccerNet validation set. Choose from {"train", "valid", "test", "challenge"}.
   eval_set:
-  - spain_laliga
-  - italy_serie-a
-  - germany_bundesliga
-  - france_ligue-1
-  - europe_uefa-champions-league
+  # - spain_laliga
+  # - italy_serie-a
+  # - germany_bundesliga
+  # - france_ligue-1
+  # - europe_uefa-champions-league
   - england_epl
   dataset_path: ${data_dir}  # ${data_dir}/SoccerNetGS The SoccerNet game state dataset is located under the data path (defined above) in the 'SoccerNetGS' folder
   vids_dict: # Use one key per split (valid, test, etc)
-    spain_laliga: []
-    italy_serie-a: []
-    germany_bundesliga: []
-    france_ligue-1: []
-    europe_uefa-champions-league: []
+    # spain_laliga: []
+    # italy_serie-a: []
+    # germany_bundesliga: []
+    # france_ligue-1: []
+    # europe_uefa-champions-league: []
     england_epl: []
     #valid: []  # Specify explicitly which video to apply tracking on, e.g. ['SNGS-04', 'SNGS-51'] . Ignored when left empty.
 
