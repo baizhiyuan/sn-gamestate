@@ -1,4 +1,4 @@
 _target_: sn_gamestate.calibration.baseline.BaselineCalibration
 resolution_width: 398
 resolution_height: 224
-batch_size: 32
+batch_size: 64

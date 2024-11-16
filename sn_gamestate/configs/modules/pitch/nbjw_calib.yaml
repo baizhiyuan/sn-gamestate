@@ -3,7 +3,7 @@ checkpoint_kp: ${model_dir}/calibration/SV_kp
 checkpoint_l: ${model_dir}/calibration/SV_lines
 image_width: 398
 image_height: 224
-batch_size: 64
+batch_size: 512
 
 
 #Kp model

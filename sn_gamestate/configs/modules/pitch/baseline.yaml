@@ -4,4 +4,4 @@ std_file: ${model_dir}/calibration/std.npy
 model_weights: ${model_dir}/calibration/soccer_pitch_segmentation.pth
 resolution_width: 398
 resolution_height: 224
-batch_size: 64
+batch_size: 512

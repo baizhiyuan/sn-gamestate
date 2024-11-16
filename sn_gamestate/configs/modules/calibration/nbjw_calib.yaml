@@ -1,5 +1,5 @@
 _target_: sn_gamestate.calibration.nbjw_calib.NBJW_Calib
 image_width: 398
 image_height: 224
-batch_size: 1024 #256
+batch_size: 512 #256
 use_prev_homography: True
