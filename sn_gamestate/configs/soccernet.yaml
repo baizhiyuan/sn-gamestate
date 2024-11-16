@@ -70,7 +70,9 @@ print_config: True
 # Dataset
 dataset:
   nvid: -1  # For a quick first inference, only the first video is processed. Use "-1" to process all the videos.
-#  nframes: -1 # For testing on only a few frames, set to a positive number. Will disable evaluation !
+  #  nframes: -1 # For testing on only a few frames, set to a positive number. Will disable evaluation !
+  # 增加输入 sequences_info 的选项
+  sequences_info_filename: sequences_info.json
   #eval_set: {"spain_laliga", "italy_serie-a", "germany_bundesliga", "france_ligue-1", "europe_uefa-champions-league", "england_epl"} #{"spain_laliga", "italy_serie-a", "germany_bundesliga", "france_ligue-1", "europe_uefa-champions-league", "england_epl"} # "valid"  # Tracking is performed on the SoccerNet validation set. Choose from {"train", "valid", "test", "challenge"}.
   eval_set:
   - spain_laliga
@@ -88,6 +90,8 @@ dataset:
     europe_uefa-champions-league: []
     england_epl: []
     #valid: []  # Specify explicitly which video to apply tracking on, e.g. ['SNGS-04', 'SNGS-51'] . Ignored when left empty.
+
+
 
 # Tracker state (save computation time by dumping tracking results on disk for later re-use)
 state:
